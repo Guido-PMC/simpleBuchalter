@@ -8,7 +8,7 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Button } from "@/components/ui/button"
 
-export function interfaz() {
+export function Interfaz() {
   return (
     <div className="max-w-sm mx-auto p-4 bg-white shadow-lg rounded-lg">
       <div className="flex flex-col space-y-4">
