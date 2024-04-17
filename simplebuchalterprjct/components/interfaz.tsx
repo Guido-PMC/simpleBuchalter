@@ -33,7 +33,7 @@ export function Interfaz() {
   }
 
   return (
-    <div className="max-w-sm mx-auto p-4 bg-white shadow-lg rounded-lg">
+    <div className="max-w-xl mx-auto p-4 bg-white shadow-lg rounded-lg">
       <div className="flex flex-col space-y-4">
       <div>
           <label className="block text-sm font-medium text-gray-700" htmlFor="cliente">Cliente</label>
