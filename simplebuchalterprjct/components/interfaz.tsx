@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
 import { SelectValue, SelectTrigger, SelectItem, SelectContent, Select } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
+import { useState } from 'react';
 import { PrismaClient } from '@prisma/client';
 
 export function Interfaz() {
@@ -28,7 +28,7 @@ export function Interfaz() {
         });
         const data = await response.json();
         if (response.ok) {
-            setResponseMessage('Operación guardada correctamente!');
+            setResponseMessage(`Operación guardada correctamente! ID: ${data.id}`);
             setResponseStatus('success');
         } else {
             throw new Error(data.message || 'Error al guardar la operación');
@@ -42,18 +42,39 @@ export function Interfaz() {
         setResponseStatus('error');
     }
 }
-
   return (
     <div className="max-w-xl mx-auto p-4 bg-white shadow-lg rounded-lg">
       <div className="flex flex-col space-y-4">
-        {/* Inputs and labels */}
+      <div>
+          <label className="block text-sm font-medium text-gray-700" htmlFor="cliente">Cliente</label>
+          <Input id="cliente" placeholder="Nombre del cliente" onChange={e => setCliente(e.target.value)} />
+        </div>
+        <div>
+          <label className="block text-sm font-medium text-gray-700" htmlFor="operacion">T Operacion</label>
+          <Input id="operacion" placeholder="Tipo de operación" onChange={e => setTOperacion(e.target.value)} />
+        </div>
+        <div>
+          <label className="block text-sm font-medium text-gray-700" htmlFor="ingreso">Ingreso</label>
+          <Input id="ingreso" placeholder="500,00" onChange={e => setIngreso(e.target.value)} />
+        </div>
+        <div>
+          <label className="block text-sm font-medium text-gray-700" htmlFor="egreso">Egreso</label>
+          <Input id="egreso" placeholder="0,00" onChange={e => setEgreso(e.target.value)} />
+        </div>
+        <div>
+          <label className="block text-sm font-medium text-gray-700" htmlFor="cotizacion">Cotizacion</label>
+          <Input id="cotizacion" placeholder="Enter value" onChange={e => setCotizacion(e.target.value)} />
+        </div>
+        <div>
+          <label className="block text-sm font-medium text-gray-700" htmlFor="comment">Comentario</label>
+          <Textarea id="comment" placeholder="Add a comment" onChange={e => setComentario(e.target.value)} />
+        </div>
         <Button className="w-20 h-20 rounded-full bg-green-500 text-white text-2xl shadow-lg" onClick={handleSubmit}>GO!</Button>
-        {responseMessage && (
-          <div className={`text-center py-2 rounded ${responseStatus === 'success' ? 'text-green-700' : 'text-red-700'}`}>
+      </div>
+      <div className={`text-center py-2 rounded ${responseStatus === 'success' ? 'text-green-700' : 'text-red-700'}`}>
             {responseMessage}
           </div>
-        )}
-      </div>
     </div>
-  );
+  )
 }
+
